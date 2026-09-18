@@ -120,9 +120,9 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
 
           <h1 style={styles.title}>{product.title}</h1>
 
-          {/* TODO: Muestra la marca (brand) del producto aquí */}
-          {/* Pista: product.brand */}
+          <p style={{ fontSize: "14px", color: "#666" }}>Marca: {product.brand}</p>
 
+                    
           <p style={styles.price}>${product.price.toFixed(2)}</p>
 
           <p style={styles.stock}>

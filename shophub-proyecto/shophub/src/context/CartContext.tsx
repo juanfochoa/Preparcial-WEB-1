@@ -32,12 +32,10 @@ import { CartItem } from "@/types/product";
 // disponibles para cualquier componente que consuma el contexto.
 interface CartContextType {
   cart: CartItem[]; // El array con los productos del carrito
-  addToCart: (item: CartItem) => void; // Función para agregar un producto
-
-  // TODO: Agrega aquí la firma de otras funciones que necesites:
-  // removeFromCart: (id: number) => void;
-  // clearCart: () => void;
-  // getTotal: () => number;
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (id: number) => void;
+  clearCart: () => void;
+  getTotal: () => number;
 }
 
 // ------------------------------------------------------------
@@ -84,22 +82,30 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  // TODO: Implementa la función para eliminar un producto del carrito
-  // Pista: usa .filter() para crear un nuevo array sin el item
-  // const removeFromCart = (id: number) => {
-  //   setCart((prevCart) => prevCart.filter(/* ... */));
-  // };
+  const removeFromCart = (id: number) => {
+  // .filter() recorre cada item del carrito y lo INCLUYE en el
+  // nuevo array SOLO si la condición retorna true.
+  // Aquí decimos: "quédate con todos los items cuyo id sea DIFERENTE al que quiero borrar".
+  setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  };
 
-  // TODO: Implementa la función para vaciar el carrito
-  // const clearCart = () => {
-  //   // ...
-  // };
 
-  // TODO: Implementa la función para calcular el total del carrito
-  // Pista: usa .reduce() para sumar price * quantity de cada item
-  // const getTotal = () => {
-  //   return cart.reduce(/* ... */);
-  // };
+  const clearCart = () => {
+  // Setea el estado a un array vacío.
+  // React detecta que el valor cambió y re-renderiza.
+  setCart([]);
+  };
+
+  
+  const getTotal = (): number => {
+  // .reduce() toma dos argumentos:
+  //   1. Una función con (acumulador, elementoActual)
+  //   2. El valor inicial del acumulador (0 en este caso)
+  //
+  // En cada iteración:
+  //   acumulador = acumulador + (precio * cantidad)
+  return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
 
   // El Provider envuelve a sus children y les pasa los valores
   // a través de la prop "value".
@@ -108,10 +114,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
       value={{
         cart,
         addToCart,
-        // TODO: Agrega aquí las funciones que implementes arriba
-        // removeFromCart,
-        // clearCart,
-        // getTotal,
+        removeFromCart,
+        clearCart,
+        getTotal,
       }}
     >
       {children}
