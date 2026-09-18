@@ -1,23 +1,11 @@
 // ============================================================
 // CONTEXTO DEL CARRITO (React Context API)
 // ============================================================
-//
-// ¿Qué es un Context?
-// Es un mecanismo de React para compartir datos entre componentes
-// SIN tener que pasarlos como props manualmente nivel por nivel.
-// Esto evita el "Prop Drilling" (pasar props a través de muchos
-// componentes intermedios que no los necesitan).
-//
 // Se compone de dos partes:
 //   1. PROVIDER: el componente que GUARDA y PROVEE los datos.
 //   2. CONSUMER (useContext): el hook que CONSUME esos datos
 //      desde cualquier componente hijo.
 //
-// ¿Por qué "use client"?
-// En Next.js App Router, los componentes son Server Components
-// por defecto. Pero un Context usa useState y createContext,
-// que son features del navegador (del cliente). Por eso
-// necesitamos marcar este archivo como componente de cliente.
 // ============================================================
 
 "use client";
@@ -56,9 +44,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
 
   // Función para agregar un producto al carrito.
-  // IMPORTANTE: nunca mutamos el array directamente (cart.push(...))
-  // porque React NO detectaría el cambio. Siempre creamos un
-  // array NUEVO usando el spread operator [...].
+  // Siempre se crea un array NUEVO usando el spread operator [...].
   const addToCart = (item: CartItem) => {
     setCart((prevCart) => {
       // Buscamos si el producto ya existe en el carrito

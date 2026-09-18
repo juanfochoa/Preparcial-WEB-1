@@ -11,11 +11,6 @@
 //   - Usa useState y useEffect (hooks)
 //   - Usa useCart() (contexto, que es un hook)
 //   - Tiene eventos onClick
-//
-// ¿Cómo se obtiene el id de la URL?
-//   Next.js pasa un objeto "params" como prop a las páginas.
-//   En App Router, params es una Promise que debemos await.
-//   Para rutas como /productos/[id], params contiene { id: "3" }.
 // ============================================================
 
 "use client";
@@ -43,8 +38,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
   // Obtenemos addToCart del contexto global
   const { addToCart } = useCart();
 
-  // Fetch del producto individual cuando el componente se monta
-  // o cuando el id cambia (ej: navegas de /productos/1 a /productos/2)
+  // Fetch del producto individual cuando el componente se monta o cuando el id cambia
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -80,7 +74,6 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
     });
   };
 
-  // --- Renderizado condicional ---
 
   if (loading) {
     return <p style={{ textAlign: "center", marginTop: "40px" }}>Cargando producto...</p>;
@@ -147,13 +140,12 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
 }
 
 const styles: Record<string, React.CSSProperties> = {
-  // Contenedor principal con más espacio y sombra sutil
   container: {
     maxWidth: "960px",
     margin: "0 auto",
     padding: "8px 0 40px",
   },
-  // El link de regreso ahora tiene un color de acento
+
   backLink: {
     display: "inline-flex",
     alignItems: "center",
@@ -165,7 +157,7 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 600,
     letterSpacing: "0.3px",
   },
-  // Tarjeta con sombra más definida para dar profundidad
+
   content: {
     display: "flex",
     gap: "48px",
@@ -179,7 +171,7 @@ const styles: Record<string, React.CSSProperties> = {
     flex: "1 1 320px",
     minWidth: "280px",
   },
-  // Imagen con sombra para que no flote en el fondo blanco
+  
   image: {
     width: "100%",
     borderRadius: "12px",
@@ -192,7 +184,7 @@ const styles: Record<string, React.CSSProperties> = {
     flexDirection: "column",
     gap: "14px",
   },
-  // Badge de categoría con fondo coloreado
+
   category: {
     display: "inline-block",
     fontSize: "11px",
@@ -212,14 +204,14 @@ const styles: Record<string, React.CSSProperties> = {
     margin: 0,
     lineHeight: 1.3,
   },
-  // Marca en gris claro para jerarquía visual
+
   brand: {
     fontSize: "14px",
     color: "#888",
     margin: 0,
     fontWeight: 500,
   },
-  // Divisor visual entre info y precio
+
   divider: {
     border: "none",
     borderTop: "1px solid #f0f0f0",
@@ -232,7 +224,7 @@ const styles: Record<string, React.CSSProperties> = {
     margin: 0,
     letterSpacing: "-0.5px",
   },
-  // Stock con color verde o rojo según disponibilidad
+
   stock: {
     fontSize: "13px",
     color: "#555",

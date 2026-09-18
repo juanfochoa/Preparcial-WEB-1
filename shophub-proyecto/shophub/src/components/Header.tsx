@@ -51,7 +51,6 @@ export default function Header() {
 }
 
 // Estilos en línea para mantener todo en un solo archivo.
-// En un proyecto real usarías CSS Modules o Tailwind.
 const styles: Record<string, React.CSSProperties> = {
   header: {
     display: "flex",

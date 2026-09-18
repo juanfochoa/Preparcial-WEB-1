@@ -6,24 +6,10 @@
 // en la carpeta app/. Es el "esqueleto" que envuelve a TODAS
 // las páginas de la aplicación.
 //
-// ¿Por qué es importante para este proyecto?
-//   - Aquí colocamos el CartProvider para que el contexto del
-//     carrito esté disponible en TODAS las rutas.
-//   - Aquí colocamos el Header para que sea PERSISTENTE
-//     (no se desmonta ni se vuelve a renderizar al navegar).
-//
-// ¿Qué es {children}?
-//   Es el contenido de la página actual. Cuando el usuario
-//   está en "/", children es el contenido de page.tsx.
-//   Cuando está en "/productos/3", children es el contenido
-//   de productos/[id]/page.tsx.
 //   El layout NO cambia, solo cambia el children.
 //
-// NOTA: Este archivo NO necesita "use client" porque él mismo
-// no usa hooks ni eventos. Importa componentes de cliente
-// (CartProvider, Header), y Next.js se encarga de renderizarlos
-// correctamente en el navegador.
-// ============================================================
+// Este archivo NO necesita "use client" porque él mismo
+// no usa hooks ni eventos.
 
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";

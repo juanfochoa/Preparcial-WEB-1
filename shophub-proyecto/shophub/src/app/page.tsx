@@ -110,8 +110,6 @@ export default function CatalogPage() {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-
-      {/* TODO: Podrías agregar paginación o un botón "cargar más" */}
     </div>
   );
 }

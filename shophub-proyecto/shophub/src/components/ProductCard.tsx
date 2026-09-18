@@ -88,7 +88,6 @@ export default function ProductCard({ product }: ProductCardProps) {
   );
 }
 
-// TODO: Puedes mejorar estos estilos o migrar a CSS Modules / Tailwind
 const styles: Record<string, React.CSSProperties> = {
   card: {
     border: "1px solid #e0e0e0",
