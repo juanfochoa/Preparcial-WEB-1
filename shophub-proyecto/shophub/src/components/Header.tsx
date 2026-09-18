@@ -40,13 +40,12 @@ export default function Header() {
         ShopHub
       </Link>
 
-      <div style={styles.cartIndicator}>
-        {/* TODO: Puedes mejorar este indicador con un ícono de carrito */}
+      <Link href="/carrito" style={styles.cartIndicator}>
         🛒
         <span style={styles.cartCount}>
           {totalItems}
         </span>
-      </div>
+      </Link>
     </header>
   );
 }
@@ -76,6 +75,8 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "center",
     gap: "8px",
     fontSize: "18px",
+    textDecoration: "none",
+    color: "#ffffff",
   },
   cartCount: {
     backgroundColor: "#e94560",
